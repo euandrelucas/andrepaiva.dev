@@ -13,6 +13,9 @@ COPY . .
 # Build React app
 RUN npm run build
 
+# Install serve
+RUN npm install -g serve
+
 # Expose port 4568
 EXPOSE 4568
 
