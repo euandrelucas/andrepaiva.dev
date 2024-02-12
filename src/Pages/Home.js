@@ -62,9 +62,18 @@ const Home = () => {
         
           if (profileResponse.ok) {
             const profileData = await profileResponse.json();
-            setUserDesc(profileData.bio);
             setProfilePhoto(profileData.avatar_url);
+            setUserDesc(profileData.bio);
             setUserName(profileData.name);
+            const timestamp = Date.now();
+            await localStorage.setItem('githubUserDatas', JSON.stringify({
+              profilePhoto: profileData.avatar_url,
+              userDesc: profileData.bio,
+              userName: profileData.name,
+              repos: [],
+              technologies: [],
+              timestamp
+            }));
           } else {
             console.error('Failed to fetch GitHub profile');
           }
@@ -78,20 +87,18 @@ const Home = () => {
               repo.language && techSet.add(repo.language);
             });
             setTechnologies(Array.from(techSet));
+            const cachedData = JSON.parse(localStorage.getItem('githubUserDatas'));
+            await localStorage.setItem('githubUserDatas', JSON.stringify({
+              profilePhoto: cachedData.profilePhoto,
+              userDesc: cachedData.userDesc,
+              userName: cachedData.userName,
+              repos: reposData,
+              technologies: Array.from(techSet),
+              timestamp: Date.now()
+            }));
           } else {
             console.error('Failed to fetch GitHub repositories');
           }
-        
-          // Armazenar dados em cache
-          const timestamp = Date.now();
-          await localStorage.setItem('githubUserDatas', JSON.stringify({
-            profilePhoto,
-            userDesc,
-            userName,
-            repos,
-            technologies,
-            timestamp,
-          }));
         }
         
       } catch (error) {
