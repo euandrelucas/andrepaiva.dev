@@ -17,4 +17,4 @@ RUN npm run build
 EXPOSE 4568
 
 # Start the app
-CMD ["npm", "start"]
+CMD ["npm", "run", "pro"]
