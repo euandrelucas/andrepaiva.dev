@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -9,14 +8,26 @@
     <meta name="description" content="Olá, me chamo André, sou um simples desenvolvedor backend, venha conhecer mais sobre mim!" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" async />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" async />
     <title>André Paiva</title>
 </head>
-
 <body>
+    <script>
+        function loadNonCriticalStyles() {
+            var link1 = document.createElement('link');
+            link1.rel = 'stylesheet';
+            link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css';
+            document.head.appendChild(link1);
+
+            var link2 = document.createElement('link');
+            link2.rel = 'stylesheet';
+            link2.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css';
+            document.head.appendChild(link2);
+        }
+        window.onload = function () {
+            loadNonCriticalStyles();
+        };
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 </body>
-
 </html>
