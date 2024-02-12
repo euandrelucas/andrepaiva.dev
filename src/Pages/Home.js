@@ -43,57 +43,64 @@ const Home = () => {
   const [technologies, setTechnologies] = useState([]);
   const mainContentRef = useRef(null);
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      // Tentar recuperar dados do cache
-      const cachedData = JSON.parse(localStorage.getItem('githubUserData'));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Tentar recuperar dados do cache
+        const cachedData = JSON.parse(localStorage.getItem('githubUserDatas'));
 
-      if (cachedData && Date.now() - cachedData.timestamp < 600000) {
-        // Usar dados em cache se forem recentes (menos de 10 minutos)
-        setProfilePhoto(cachedData.profilePhoto);
-        setUserDesc(cachedData.userDesc);
-        setUserName(cachedData.userName);
-        setRepos(cachedData.repos);
-        setTechnologies(cachedData.technologies);
-      } else {
-        // Fazer chamadas à API se os dados em cache estiverem desatualizados
-        const profileResponse = await fetch(githubApiUrl);
-        const reposResponse = await fetch(`${githubApiUrl}/repos`);
-
-        if (profileResponse.ok) {
-          const profileData = await profileResponse.json();
-          setUserDesc(profileData.bio);
-          setProfilePhoto(profileData.avatar_url);
-          setUserName(profileData.name);
+        if (cachedData && Date.now() - cachedData.timestamp < 600000) {
+          setProfilePhoto(cachedData.profilePhoto);
+          setUserDesc(cachedData.userDesc);
+          setUserName(cachedData.userName);
+          setRepos(cachedData.repos);
+          setTechnologies(cachedData.technologies);
         } else {
-          console.error('Failed to fetch GitHub profile');
+          // Fazer chamadas à API se os dados em cache estiverem desatualizados
+          const profileResponse = await fetch(githubApiUrl);
+          const reposResponse = await fetch(`${githubApiUrl}/repos`);
+        
+          if (profileResponse.ok) {
+            const profileData = await profileResponse.json();
+            setUserDesc(profileData.bio);
+            setProfilePhoto(profileData.avatar_url);
+            setUserName(profileData.name);
+          } else {
+            console.error('Failed to fetch GitHub profile');
+          }
+        
+          if (reposResponse.ok) {
+            const reposData = await reposResponse.json();
+            setRepos(reposData);
+        
+            const techSet = new Set();
+            reposData.forEach((repo) => {
+              repo.language && techSet.add(repo.language);
+            });
+            setTechnologies(Array.from(techSet));
+          } else {
+            console.error('Failed to fetch GitHub repositories');
+          }
+        
+          // Armazenar dados em cache
+          const timestamp = Date.now();
+          await localStorage.setItem('githubUserDatas', JSON.stringify({
+            profilePhoto,
+            userDesc,
+            userName,
+            repos,
+            technologies,
+            timestamp,
+          }));
         }
-
-        if (reposResponse.ok) {
-          const reposData = await reposResponse.json();
-          setRepos(reposData);
-
-          const techSet = new Set();
-          reposData.forEach((repo) => {
-            repo.language && techSet.add(repo.language);
-          });
-          setTechnologies(Array.from(techSet));
-        } else {
-          console.error('Failed to fetch GitHub repositories');
-        }
-
-        // Armazenar dados em cache
-        const timestamp = Date.now();
-        localStorage.setItem('githubUserData', JSON.stringify({ profilePhoto, userDesc, userName, repos, technologies, timestamp }));
+        
+      } catch (error) {
+        console.error('Error fetching GitHub data:', error);
       }
-    } catch (error) {
-      console.error('Error fetching GitHub data:', error);
-    }
-  };
+    };
 
-  fetchData();
-}, []);
+    fetchData();
+  }, []);
 
   const settings = {
     infinite: true,
