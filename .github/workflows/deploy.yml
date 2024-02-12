@@ -1,0 +1,37 @@
+name: Deploy to production 🚀
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  deploy:
+    name: "Deploy to production 🚀"
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Setup ssh
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          cat >>~/.ssh/config << END
+          Host prod
+            HostName $SSH_HOST
+            User $SSH_USER
+            Port $SSH_PORT
+            IdentityFile ~/.ssh/key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+      - name: Cloning repository
+        run: ssh prod 'cd andrepaiva.dev && git fetch && git reset --hard origin/master'
+      - name: Building container
+        run: ssh prod 'bash -i -c "cd andrepaiva.dev && docker build . -t adgdev/web"'
+      - name: Stopping container
+        run: ssh prod 'bash -i -c "docker rm --force andrepaiva.dev"'
+      - name: Starting container
+        run: ssh prod 'bash -i -c "cd andrepaiva.dev && docker run -p ${{ secrets.APP_PORT }}:3000 --add-host=localmachine:127.0.0.1 --hostname gotenks -d --restart always --network="host" --cpuset-cpus=0-5 --memory="10g" --name andrepaiva.dev adgdev/web"'
