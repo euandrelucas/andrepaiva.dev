@@ -3,6 +3,10 @@ FROM node:20
 # Create APP directory
 WORKDIR /usr/src/app
 
+# Install Jemalloc
+RUN apt-get update && apt-get install libjemalloc-dev -y && apt-get clean
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so" 
+
 # Install app dependencies
 COPY package*.json ./
 RUN npm install
