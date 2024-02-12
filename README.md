@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# Começando com o Portfólio Pessoal em React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é um portfólio pessoal desenvolvido em React, destinado a apresentar suas informações do GitHub e destacar seus projetos de maneira organizada. O site inclui seções para suas informações de perfil, uma breve apresentação, projetos em destaque e detalhes de contato.
 
-## Available Scripts
+## Scripts Disponíveis
 
-In the project directory, you can run:
+No diretório do projeto, você pode executar:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Inicia o aplicativo no modo de desenvolvimento.\
+Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A página será recarregada quando você fizer alterações.\
+Você também poderá ver quaisquer erros de lint no console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Inicia o executor de testes no modo de observação interativa.\
+Consulte a seção sobre [execução de testes](https://facebook.github.io/create-react-app/docs/running-tests) para mais informações.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Compila o aplicativo para produção na pasta `build`.\
+Ele agrupa o React corretamente no modo de produção e otimiza a compilação para obter o melhor desempenho.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A compilação é minificada, e os nomes dos arquivos incluem hashes.\
+Seu aplicativo está pronto para ser implantado!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Consulte a seção sobre [implantação](https://facebook.github.io/create-react-app/docs/deployment) para mais informações.
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Nota: esta é uma operação unidirecional. Depois de fazer `eject`, você não pode voltar atrás!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Se você não estiver satisfeito com a ferramenta de construção e as opções de configuração, pode fazer `eject` a qualquer momento. Este comando removerá a única dependência de compilação do seu projeto.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Em vez disso, ele copiará todos os arquivos de configuração e as dependências transitivas (Webpack, Babel, ESLint, etc.) diretamente para o seu projeto, para que você tenha controle total sobre eles. Todos os comandos, exceto `eject`, ainda funcionarão, mas apontarão para os scripts copiados para que você possa ajustá-los. Neste ponto, você está por conta própria.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `npm run prod`
 
-## Learn More
+Executa o aplicativo em modo de produção usando o servidor [serve](https://www.npmjs.com/package/serve) com Jemalloc.\
+O servidor será iniciado em [http://localhost:4568](http://localhost:4568).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## A Estrutura do Projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Os principais componentes do seu projeto incluem:
 
-### Code Splitting
+- `ProfileSection`: Exibe sua foto de perfil do GitHub, nome de usuário, descrição e links de navegação.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `Home`: O principal componente que busca dados na API do GitHub, exibe suas informações de perfil, projetos em destaque e detalhes de contato.
 
-### Analyzing the Bundle Size
+## Infraestrutura do Projeto e Dockerfile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Este projeto utiliza um Dockerfile para facilitar a implantação e a execução consistente em diferentes ambientes. Aqui está o conteúdo do Dockerfile:
 
-### Making a Progressive Web App
+```dockerfile
+FROM node:20
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Cria o diretório APP
+WORKDIR /usr/src/app
 
-### Advanced Configuration
+# Instala o Jemalloc
+RUN apt-get update && apt-get install libjemalloc-dev -y && apt-get clean
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so" 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Instala as dependências do aplicativo
+COPY package*.json ./
+RUN npm install
 
-### Deployment
+# Agrupa o código-fonte do aplicativo
+COPY . .
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Compila o aplicativo React
+RUN npm run build
 
-### `npm run build` fails to minify
+# Instala o serve
+RUN npm install -g serve
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Expõe a porta 4568
+EXPOSE 4568
+
+# Inicia o aplicativo
+CMD ["npm", "run", "prod"]
+```
+
+Este Dockerfile realiza as seguintes etapas:
+
+1. Usa a imagem `node:20` como base.
+2. Configura o diretório de trabalho para `/usr/src/app`.
+3. Instala o Jemalloc para melhor gerenciamento de memória.
+4. Copia os arquivos `package.json` e `package-lock.json` e instala as dependências.
+5. Copia o restante dos arquivos do aplicativo.
+6. Compila o aplicativo React usando `npm run build`.
+7. Instala o servidor `serve`.
+8. Expõe a porta 4568.
+9. Inicia o aplicativo em modo de produção usando o comando `npm run prod`.
+
+O Dockerfile simplifica a criação de uma imagem Docker para o seu aplicativo, garantindo uma execução consistente em diferentes ambientes. Para implantar o aplicativo usando Docker, você pode usar comandos como `docker build` e `docker run`. Certifique-se de ter o Docker instalado e configurado no ambiente de implantação.
