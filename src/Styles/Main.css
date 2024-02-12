@@ -1,0 +1,270 @@
+/* Reset default styles for body */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Material Symbols Rounded', sans-serif;
+  background-color: #2e353f;
+  color: #ecf0f1;
+}
+
+/* Main Section Styles */
+.mainSection {
+  display: inline-block;
+}
+
+/* Hero Section Styles */
+.hero {
+  margin: 20px;
+}
+
+.title {
+  font-size: 3em;
+  margin: 20px 0;
+  color: #3498db;
+}
+
+.text {
+  font-size: 1.2em;
+  color: white;
+  max-width: 1000px;
+}
+
+/* Header Styles */
+header {
+  background-color: #34495e;
+  padding: 20px;
+}
+
+/* Portfolio Title Styles */
+.portTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.portTitle img.profile-img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: 4px solid #3498db;
+  transition: transform 0.5s ease;
+}
+
+.portTitle img.profile-img:hover {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.info {
+  text-align: left;
+  margin-left: 20px;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: 3em;
+  color: #3498db;
+}
+
+hr {
+  width: 50%;
+  margin: 10px 0;
+  border-color: #3498db;
+}
+
+p {
+  font-size: 1.2em;
+  color: #bdc3c7;
+}
+
+/* Links Container Styles */
+.linksContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.linkStyle {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #3498db;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 3px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.linkStyle:hover {
+  background-color: #2980b9;
+}
+
+.bioLink {
+  color: white;
+  text-decoration: none;
+}
+
+.bioLink:hover {
+  color: #2980b9;
+}
+
+/* Project Slider Styles */
+.project-slider img.profile-img {
+  transition: transform 0.5s ease;
+}
+
+.project-slider:hover img.profile-img {
+  transform: rotate(360deg);
+}
+
+/* Project Card Styles */
+.project-card {
+  background-color: #2c3e50;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 10px;
+  width: 300px;
+  height: 300px;
+  text-align: left;
+  transform: scale(0.9);
+  transition: transform 0.5s ease;
+  box-sizing: border-box;
+}
+
+.project-card h3 {
+  font-size: 1.5em;
+  color: #ecf0f1;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: #bdc3c7;
+}
+
+.project-card a:hover {
+  background-color: #2980b9;
+}
+
+/* Main Content Styles */
+#mainContent section:first-child {
+  text-align: left;
+  margin-left: 20px;
+}
+
+#mainContent section:first-child h2 {
+  text-align: left;
+  color: #3498db;
+}
+
+#mainContent section:first-child p {
+  text-align: left;
+  color: #bdc3c7;
+}
+
+#mainContent section:last-child {
+  padding: 20px;
+  background-color: #2c3e50; /* Dark blue for the technologies section */
+}
+
+#mainContent section:last-child h2 {
+  color: #3498db; /* Bright blue for the technologies title */
+}
+
+/* Technologies Container Styles */
+.technologies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.technology-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Media Queries for Responsiveness */
+
+.textgh {
+  font-size: 1.2em;
+  color: white;
+}
+
+/* Adjust styles for screens 600px and below */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2em;
+  }
+  
+  .text {
+    font-size: 1em;
+  }
+  
+  .portTitle {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .portTitle img.profile-img {
+    margin-bottom: 10px;
+  }
+  
+  .info {
+    margin-left: 0;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+  }
+  
+  hr {
+    width: 100%;
+  }
+  
+  .project-card {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+#footer {
+  background-color: #2c3e50; /* Dark blue background color */
+  color: #ecf0f1; /* Light text color */
+  padding: 20px; /* Add padding for better spacing */
+
+  /* Center the content within the footer */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer section {
+  text-align: center; /* Center align the text within the section */
+
+  /* Add margin to create space between different sections (if needed) */
+  margin: 10px;
+}
+
+#footer h2 {
+  color: #3498db; /* Blue color for the heading */
+}
+
+#footer p {
+  margin: 5px 0; /* Adjust margin for better spacing */
+}
+
+#footer a {
+  color: #3498db; /* Blue color for the links */
+  text-decoration: none;
+}
+
+#footer a:hover {
+  text-decoration: underline; /* Underline the link on hover */
+}
