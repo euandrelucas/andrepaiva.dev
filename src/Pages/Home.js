@@ -163,9 +163,9 @@ const Home = () => {
           </section>
           <section className="mainSection">
             <h2 className="title">Destaques</h2>
-            <p className="text">Eu atuo em vários projetos, sendo os principais:<br/>- <a className="bioLink" href="https://dreamteam.futbol">DreamTeam</a>, um simulador de futebol brasileiro!<br/>
-            - <a className="bioLink" href="https://etheris.arkanus.app/">Etheris Studios</a>, transformando seus sonhos em realidade com um pequeno toque da magia dos jogos!<br/>
-            - <a className="bioLink" href="https://discord.gg/elixirlab">Elixir Lab</a>, a porta de entrada para o Discord Brasileiro!
+            <p className="text">Eu atuo em vários projetos, sendo os principais:<br/>- <a className="bioLink" target="_blank" rel="noopener noreferrer" href="https://dreamteam.futbol">DreamTeam</a>, um simulador de futebol brasileiro!<br/>
+            - <a className="bioLink" target="_blank" rel="noopener noreferrer" href="https://etheris.arkanus.app/">Etheris Studios</a>, transformando seus sonhos em realidade com um pequeno toque da magia dos jogos!<br/>
+            - <a className="bioLink" target="_blank" rel="noopener noreferrer" href="https://discord.gg/elixirlab">Elixir Lab</a>, a porta de entrada para o Discord Brasileiro!
             </p>
           </section>
         </main>
@@ -191,8 +191,8 @@ const Home = () => {
         <section>
           <h2>Contato</h2>
           <p>Entre em contato comigo:</p>
-          <p style={{ textAlign: 'center' }}>Email: <a href="mailto:adg@dreamteam.futbol">adg@dreamteam.futbol</a></p>
-          <p style={{ textAlign: 'center' }}>Discord: <a href="https://discord.com/users/717766639260532826">@adrequigames</a></p>
+          <p style={{ textAlign: 'center' }}>Email: <a target="_blank" rel="noopener noreferrer" href="mailto:adg@dreamteam.futbol">adg@dreamteam.futbol</a></p>
+          <p style={{ textAlign: 'center' }}>Discord: <a target="_blank" rel="noopener noreferrer" href="https://discord.com/users/717766639260532826">@adrequigames</a></p>
         </section>
       </footer>
     </div>
