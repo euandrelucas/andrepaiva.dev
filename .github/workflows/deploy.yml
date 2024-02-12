@@ -34,4 +34,4 @@ jobs:
       - name: Stopping container
         run: ssh prod 'bash -i -c "docker rm --force andrepaiva.dev"'
       - name: Starting container
-        run: ssh prod 'bash -i -c "cd andrepaiva.dev && docker run -p 4568:3000 --add-host=localmachine:127.0.0.1 --hostname gotenks -d --restart always --network="host" --cpuset-cpus=0-5 --memory="10g" --name andrepaiva.dev adgdev/web"'
+        run: ssh prod 'bash -i -c "cd andrepaiva.dev && docker run -p 4568:3000 --add-host=localmachine:127.0.0.1 --hostname gotenks -d --restart always --cpuset-cpus=0-5 --memory="10g" --name andrepaiva.dev adgdev/web"'

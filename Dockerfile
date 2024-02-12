@@ -13,7 +13,7 @@ COPY . .
 # Build React app
 RUN npm run build
 
-# Expose port 3000
+# Expose port 4568
 EXPOSE 4568
 
 # Start the app
