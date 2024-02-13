@@ -179,7 +179,7 @@ const Home = () => {
         <main id="about">
           <section className="mainSection">
             <h2 className="title">Sobre mim</h2>
-            <p className="text">Olá, meu nome é André Paiva, sou desenvolvedor backend, estudante de Jogos Digitais e Gestor de Comunidades. Atualmente, estou focado em desenvolvimento de softares, na parte de backend. Tenho experiência com as tecnologias listadas abaixo e estou sempre disposto a aprender mais.</p>
+            <p className="text">Olá, meu nome é André Paiva, sou desenvolvedor backend, estudante de Jogos Digitais. Atualmente, estou focado em desenvolvimento de softares, na parte de backend. Tenho experiência com as tecnologias listadas abaixo e estou sempre disposto a aprender mais.</p>
             <div className="technologies-container">
               {technologies.map((tech, index) => (
                 <div key={index} className="technology-item">
@@ -193,9 +193,8 @@ const Home = () => {
           </section>
           <section className="mainSection">
             <h2 className="title">Destaques</h2>
-            <p className="text">Eu atuo em vários projetos, sendo os principais:<br/>- <a className="bioLink" target="_blank" rel="noopener noreferrer" href="https://dreamteam.futbol">DreamTeam</a>, um simulador de futebol brasileiro!<br/>
+            <p className="text">Eu já atuei em vários projetos, sendo os principais:<br/>- <a className="bioLink" target="_blank" rel="noopener noreferrer" href="https://dreamteam.futbol">DreamTeam</a>, um simulador de futebol brasileiro!<br/>
             - <a className="bioLink" target="_blank" rel="noopener noreferrer" href="https://etheris.arkanus.app/">Etheris Studios</a>, transformando seus sonhos em realidade com um pequeno toque da magia dos jogos!<br/>
-            - <a className="bioLink" target="_blank" rel="noopener noreferrer" href="https://discord.gg/elixirlab">Elixir Lab</a>, a porta de entrada para o Discord Brasileiro!
             </p>
           </section>
         </main>
@@ -223,8 +222,7 @@ const Home = () => {
         <section>
           <h2>Contato</h2>
           <p>Entre em contato comigo:</p>
-          <p style={{ textAlign: 'center' }}>Email: <a target="_blank" rel="noopener noreferrer" href="mailto:adg@dreamteam.futbol">adg@dreamteam.futbol</a></p>
-          <p style={{ textAlign: 'center' }}>Discord: <a target="_blank" rel="noopener noreferrer" href="https://discord.com/users/717766639260532826">@adrequigames</a></p>
+          <p style={{ textAlign: 'center' }}>Email: <a target="_blank" rel="noopener noreferrer" href="mailto:contato@andrepaiva.dev">contato@andrepaiva.dev</a></p>
         </section>
       </footer>
     </div>
