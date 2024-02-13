@@ -171,7 +171,6 @@ const Home = () => {
   return (
     <div className="App">
             <header id="home">
-        {/* Renderizar o ProfileSection apenas se todos os dados estiverem disponíveis */}
         {(profilePhoto || userName || userDesc) && (
           <ProfileSection profilePhoto={profilePhoto} userName={userName} userDesc={userDesc} />
         )}
@@ -205,16 +204,18 @@ const Home = () => {
             <h2 className="title">Github</h2>
             <p className="textgh">O GitHub é uma plataforma de hospedagem e colaboração para desenvolvimento de software, lá eu hospedo códigos de alguns projetos meus, incluindo, você pode encontrar o código fonte deste website lá! Confira alguns projetos aqui embaixo:</p>
             <Slider {...settings}>
-              {repos.map((repo) => (
-                <div key={repo.id} className="project-card">
-                  <h3>{repo.name}</h3>
-                  <p>{truncateDescription(repo.description) ?? "Repositório sem descrição, mas recomendo você dar uma olhada :)"}</p>
-                  <a className="linkStyle" href={repo.html_url} target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon icon={faGithub} size="sm" />
-                  </a>
-                </div>
-              ))}
-            </Slider>
+  {repos.map((repo) => (
+    <div key={repo.id} className="project-card">
+      <h3>{repo.name}</h3>
+      <p>{truncateDescription(repo.description) ?? "Repositório sem descrição, mas recomendo você dar uma olhada :)"}</p>
+      <div className="link-container" aria-hidden="true">
+        <a className="linkStyle" href={repo.html_url} target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faGithub} size="sm" /> Ver no GitHub
+        </a>
+      </div>
+    </div>
+  ))}
+</Slider>
           </section>
         </main>
       </div>
