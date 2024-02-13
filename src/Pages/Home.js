@@ -112,7 +112,7 @@ const Home = () => {
     infinite: true,
     speed: 7000,
     slidesToShow: 7,
-    slidesToScroll: 7,
+    slidesToScroll: 1,
     autoplay: false,
     pauseOnHover: false,
     dots: false,
