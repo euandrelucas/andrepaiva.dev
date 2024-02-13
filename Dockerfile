@@ -24,6 +24,10 @@ RUN npm run build
 # Use the official Nginx base image
 FROM nginx:latest
 
+# Install Jemalloc
+RUN apt-get update && apt-get install libjemalloc-dev -y && apt-get clean
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so" 
+
 # Remove the default Nginx configuration
 RUN rm /etc/nginx/conf.d/default.conf
 
@@ -37,4 +41,4 @@ COPY --from=0 /usr/src/app/dist /usr/share/nginx/html
 EXPOSE 80
 
 # Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2", "nginx", "-g", "daemon off;"]
