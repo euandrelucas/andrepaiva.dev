@@ -1,4 +1,8 @@
-FROM node:latest
+# Use the official Nginx base image
+FROM nginx:latest
+
+# Remove the default Nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
 
 # Create APP directory
 WORKDIR /usr/src/app
@@ -17,11 +21,11 @@ COPY . .
 # Build React app
 RUN npm run build
 
-# Install serve
-RUN npm install -g serve
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 4568
-EXPOSE 4568
+# Expose port 80 (default for HTTP)
+EXPOSE 80
 
-# Start the app
-CMD ["npm", "run", "prod"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
