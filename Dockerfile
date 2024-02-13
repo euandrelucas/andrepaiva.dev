@@ -28,7 +28,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the built React app from the Node.js image
-COPY --from=0 /usr/src/app/build /usr/share/nginx/html
+COPY --from=0 /usr/src/app/dist /usr/share/nginx/html
 
 # Expose port 80 (default for HTTP)
 EXPOSE 80
