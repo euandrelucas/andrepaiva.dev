@@ -15,6 +15,9 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+# Add teser
+RUN npm add -D terser
+
 # Build React app
 RUN npm run build
 
