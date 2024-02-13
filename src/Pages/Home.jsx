@@ -5,12 +5,28 @@ import Slider from 'react-slick';
 import '../Styles/Main.css';
 
 const githubApiUrl = 'https://api.github.com/users/euandrelucas';
+const placeholderImage = '/icon.webp';
+const placeholderName = "André Lucas";
+const placeholderDesc = "Backend Developer"
 
 const links = [
   { label: "Início", href: "#home" },
   { label: "Projetos", href: "#projects" },
   { label: "Contato", href: "#footer" },
 ];
+
+const placeholderSlider = [
+  { id: 1, name: "Projeto 1", description: "Descrição do projeto 1", html_url: "https://github.com" },
+  { id: 2, name: "Projeto 2", description: "Descrição do projeto 2", html_url: "https://github.com" },
+  { id: 3, name: "Projeto 3", description: "Descrição do projeto 3", html_url: "https://github.com" },
+  { id: 4, name: "Projeto 4", description: "Descrição do projeto 4", html_url: "https://github.com" },
+  { id: 5, name: "Projeto 5", description: "Descrição do projeto 5", html_url: "https://github.com" },
+  { id: 6, name: "Projeto 6", description: "Descrição do projeto 6", html_url: "https://github.com" },
+  { id: 7, name: "Projeto 7", description: "Descrição do projeto 7", html_url: "https://github.com" },
+  { id: 8, name: "Projeto 8", description: "Descrição do projeto 8", html_url: "https://github.com" },
+  { id: 9, name: "Projeto 9", description: "Descrição do projeto 9", html_url: "https://github.com" },
+  { id: 10, name: "Projeto 10", description: "Descrição do projeto 10", html_url: "https://github.com" },
+]
 
 const ProfileSection = ({ profilePhoto, userName, userDesc }) => (
   <section className="portTitle" id="home">
@@ -43,6 +59,11 @@ const Home = () => {
   const mainContentRef = useRef(null);
 
   useEffect(() => {
+    setProfilePhoto(placeholderImage);
+    setUserName(placeholderName);
+    setUserDesc(placeholderDesc);
+    setRepos(placeholderSlider);
+
     const fetchData = async () => {
       try {
         // Tentar recuperar dados do cache
@@ -149,8 +170,11 @@ const Home = () => {
 
   return (
     <div className="App">
-      <header id="home">
-        <ProfileSection profilePhoto={profilePhoto} userName={userName} userDesc={userDesc} />
+            <header id="home">
+        {/* Renderizar o ProfileSection apenas se todos os dados estiverem disponíveis */}
+        {(profilePhoto || userName || userDesc) && (
+          <ProfileSection profilePhoto={profilePhoto} userName={userName} userDesc={userDesc} />
+        )}
       </header>
       <div className="hero">
         <main id="about">
