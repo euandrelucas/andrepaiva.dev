@@ -25,10 +25,10 @@ RUN npm run build
 FROM nginx:latest
 
 # Remove the default Nginx configuration
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/nginx.conf
 
 # Copy the Nginx configuration file
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
 # Copy the built React app from the Node.js image
 COPY --from=0 /usr/src/app/dist /usr/share/nginx/html
