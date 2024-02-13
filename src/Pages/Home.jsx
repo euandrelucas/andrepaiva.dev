@@ -110,9 +110,9 @@ const Home = () => {
 
   const settings = {
     infinite: true,
-    speed: 7000,
+    speed: 1000,
     slidesToShow: 7,
-    slidesToScroll: 1,
+    slidesToScroll: 7,
     autoplay: false,
     pauseOnHover: false,
     dots: false,
@@ -130,6 +130,13 @@ const Home = () => {
       });
     },
     responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+        },
+      },
       {
         breakpoint: 768,
         settings: {

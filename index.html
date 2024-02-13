@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Olá, me chamo André, sou um simples desenvolvedor backend, venha conhecer mais sobre mim!" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="canonical" href="https://andrepaiva.dev"/>
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <script type="module" src="/src/index.jsx"></script>
     <title>André Paiva</title>
 </head>
+
 <body>
     <script>
         function loadNonCriticalStyles() {
@@ -24,11 +26,12 @@
             link2.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css';
             document.head.appendChild(link2);
         }
-        window.onload = function () {
+        window.onload = function() {
             loadNonCriticalStyles();
         };
     </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 </body>
+
 </html>
