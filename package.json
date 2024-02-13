@@ -20,7 +20,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "prod": "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 serve -l 4568 -s build"
+    "prod": "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 serve -l 4568 -s dist"
   },
   "eslintConfig": {
     "extends": [
