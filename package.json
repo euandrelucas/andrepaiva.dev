@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "terser": "^5.27.0",
+    "terser": "^5.30.3",
     "vite-plugin-minify": "^1.5.2"
   }
 }
