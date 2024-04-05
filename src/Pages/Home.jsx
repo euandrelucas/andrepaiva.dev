@@ -12,7 +12,7 @@ const placeholderDesc = "Backend Developer"
 const links = [
   { label: "Início", href: "#home" },
   { label: "Projetos", href: "#projects" },
-  { label: "Contato", href: "#footer" },
+  { label: "Contato", href: "mailto:contato@andrepaiva.dev" },
 ];
 
 const placeholderSlider = [
